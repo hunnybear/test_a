@@ -1,0 +1,26 @@
+on:
+  push:
+    branches: [ mainline ]
+  pull_request:
+    branches: [ mainline ]
+
+jobs:
+  export_textures:
+    runs-on: ubuntu-latest
+    env:
+      EXPORT_ROOT: "artifacts"
+    steps:
+      - name: "Be Useful"
+        id: "be_useful"
+        run: |
+          mkdir artifacts
+          echo "FOO" > artifacts/foo.werd
+          echo "BAR" > artifacts/bar.werd
+          mkdir artifacts/directory
+          echo "deep" > artifacts/directory/deep.werd
+      - name: "upload zeee artifacts!"
+        id: "upload"
+        uses: "actions/upload-artifact@v2"
+        with:
+          path: "artifacts"
+          name: "test"
